@@ -43,14 +43,14 @@ jobs:
             pandoc "$file" -f html -t markdown -o "docs/md/$base.md"
           done
 
-      - name: 📘 Generar documentación PDF
+      - name: 🧰 Instalar wkhtmltopdf
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
+
+      - name: 📄 Convertir HTML a PDF
         run: |
           mkdir -p docs/pdf
-          javadoc \
-            -docletpath javadoc-pdf-doclet.jar \
-            -doclet org.tquadrat.doclet.pdf.PDFDoclet \
-            -d docs/pdf \
-            src/*.java
+          # elegir la página adecuada (overview-summary.html o index.html)
+          wkhtmltopdf docs/html/overview-summary.html docs/pdf/documentation.pdf
 
       - name: 💾 Subir los cambios generados a main
         run: |
