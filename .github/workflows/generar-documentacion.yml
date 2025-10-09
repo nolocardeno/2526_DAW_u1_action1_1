@@ -23,21 +23,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Instalar WeasyPrint
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip python3-cffi libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
-          pip3 install weasyprint
+      - name: 🧰 Instalar wkhtmltopdf
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
       - name: 🏗️ Generar documentación con Javadoc
         run: |
           mkdir -p docs/html
           javadoc -d docs/html -sourcepath src -subpackages main.java
 
-      - name: Convertir HTML a PDF con WeasyPrint
+      - name: 📄 Convertir HTML a PDF
         run: |
           mkdir -p docs/pdf
-          weasyprint docs/html/index.html docs/pdf/proyecto-documentacion.pdf
+          wkhtmltopdf --enable-local-file-access docs/html/**/*.html docs/pdf/proyecto-documentacion.pdf
 
       - name: 💾 Subir los cambios generados a main
         run: |
