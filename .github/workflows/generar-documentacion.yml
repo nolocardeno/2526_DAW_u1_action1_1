@@ -23,9 +23,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 🧰 Instalar Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
-
       - name: 🧰 Instalar wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
@@ -33,14 +30,6 @@ jobs:
         run: |
           mkdir -p docs/html
           javadoc -d docs/html -sourcepath src/main/java -subpackages com.clases
-          
-      - name: 🏗️ Generar archivos Markdown
-        run: |
-          mkdir -p docs/md
-          for file in $(find docs/html -name "*.html"); do
-            base=$(basename "$file" .html)
-            pandoc "$file" -f html -t markdown -o "docs/md/$base.md"
-          done
 
       - name: 📄 Convertir HTML a PDF
         run: |
