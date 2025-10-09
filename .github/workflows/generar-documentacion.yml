@@ -31,9 +31,8 @@ jobs:
       - name: 🧰 Instalar Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
-      - name: 📥 Descargar PDF Doclet
-        run: |
-          wget https://repo1.maven.org/maven2/org/tquadrat/foundation/javadoc-pdf-doclet/0.5.0/javadoc-pdf-doclet-0.5.0.jar -O javadoc-pdf-doclet.jar
+      - name: 🧰 Instalar wkhtmltopdf
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
       - name: 🏗️ Generar archivos Markdown
         run: |
@@ -42,9 +41,6 @@ jobs:
             base=$(basename "$file" .html)
             pandoc "$file" -f html -t markdown -o "docs/md/$base.md"
           done
-
-      - name: 🧰 Instalar wkhtmltopdf
-        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
       - name: 📄 Convertir HTML a PDF
         run: |
