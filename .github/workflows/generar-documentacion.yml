@@ -36,7 +36,7 @@ jobs:
           mkdir -p docs/pdf
           find docs/html -name "*.html" | while read file; do
             filename=$(basename "$file" .html)
-            wkhtmltopdf "$file" "docs/pdf/${filename}.pdf"
+            wkhtmltopdf --enable-local-file-access "$file" "docs/pdf/${filename}.pdf"
           done
 
       - name: 💾 Subir los cambios generados a main
