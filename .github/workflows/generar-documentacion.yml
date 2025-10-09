@@ -33,8 +33,7 @@ jobs:
 
       - name: 📥 Descargar PDF Doclet
         run: |
-          wget https://repo1.maven.org/maven2/org/tquadrat/javadoc-pdf-doclet/1.5.0/javadoc-pdf-doclet-1.5.0.jar -O javadoc-pdf-doclet.jar
-
+          wget https://repo1.maven.org/maven2/org/tquadrat/foundation/javadoc-pdf-doclet/0.5.0/javadoc-pdf-doclet-0.5.0.jar -O javadoc-pdf-doclet.jar
 
       - name: 🏗️ Generar archivos Markdown
         run: |
