@@ -1,0 +1,32 @@
+name: Generar documentación Javadoc
+
+on:
+  push:
+    branches:
+        - main
+        - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: 🧰 Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🏗️ Generar documentación con Javadoc
+        run: |
+          mkdir -p docs/html
+          javadoc -d docs/html src/*.java
+
+      - name: 🚀 Publicar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
