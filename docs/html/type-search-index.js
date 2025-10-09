@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"<Unnamed>","l":"AdiosMundo"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"HolaMundo"}];updateSearchResults();
+typeSearchIndex = [{"p":"main.java.com.clases","l":"AdiosMundo"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"main.java.com.clases","l":"HolaMundo"}];updateSearchResults();
