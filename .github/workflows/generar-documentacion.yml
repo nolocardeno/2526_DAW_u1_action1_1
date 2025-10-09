@@ -26,7 +26,7 @@ jobs:
       - name: Instalar WeasyPrint
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip python3-cffi libcairo2 libpango1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+          sudo apt-get install -y python3-pip python3-cffi libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
           pip3 install weasyprint
 
       - name: 🏗️ Generar documentación con Javadoc
