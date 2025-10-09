@@ -34,7 +34,12 @@ jobs:
       - name: 📄 Convertir HTML a PDF
         run: |
           mkdir -p docs/pdf
-          wkhtmltopdf --enable-local-file-access docs/html/index.html docs/pdf/documentation.pdf
+          cd docs/html
+          # Buscar y ordenar todos los HTML
+          FILES=$(find . -name "*.html" | sort)
+          # Convertir todos los HTML a un solo PDF en docs/pdf
+          wkhtmltopdf $FILES ../pdf/proyecto-documentacion.pdf
+          cd ..
 
       - name: 💾 Subir los cambios generados a main
         run: |
