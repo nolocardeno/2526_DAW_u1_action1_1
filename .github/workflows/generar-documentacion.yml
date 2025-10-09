@@ -28,6 +28,9 @@ jobs:
           mkdir -p docs/html
           javadoc -d docs/html src/*.java
 
+      - name: 🧰 Instalar Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
       - name: 🏗️ Generar archivos Markdown
         run: |
           mkdir -p docs/md
