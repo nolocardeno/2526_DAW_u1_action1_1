@@ -34,8 +34,10 @@ jobs:
       - name: 📄 Convertir HTML a PDF
         run: |
           mkdir -p docs/pdf
-          FILES=$(find docs/html -name "*.html" | sort)
-          wkhtmltopdf $FILES docs/pdf/proyecto-documentacion.pdf
+          find docs/html -name "*.html" | while read file; do
+            filename=$(basename "$file" .html)
+            wkhtmltopdf "$file" "docs/pdf/${filename}.pdf"
+          done
 
       - name: 💾 Subir los cambios generados a main
         run: |
