@@ -37,7 +37,7 @@ jobs:
       - name: Convertir HTML a PDF con WeasyPrint
         run: |
           mkdir -p docs/pdf
-          weasyprint docs/html/overview-summary.html docs/pdf/proyecto-documentacion.pdf
+          weasyprint docs/html/index.html docs/pdf/proyecto-documentacion.pdf
 
       - name: 💾 Subir los cambios generados a main
         run: |
