@@ -23,17 +23,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 🏗️ Generar documentación con Javadoc
-        run: |
-          mkdir -p docs/html
-          javadoc -d docs/html src/*.java
-
       - name: 🧰 Instalar Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
       - name: 🧰 Instalar wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
+      - name: 🏗️ Generar documentación con Javadoc
+        run: |
+          mkdir -p docs/html
+          javadoc -d docs/html -sourcepath src/main/java -subpackages com.clases
+          
       - name: 🏗️ Generar archivos Markdown
         run: |
           mkdir -p docs/md

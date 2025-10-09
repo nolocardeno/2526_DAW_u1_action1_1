@@ -1,3 +1,4 @@
+package main.java.com.clases;
 
 /**
  * Esta clase dice Hola mundo.

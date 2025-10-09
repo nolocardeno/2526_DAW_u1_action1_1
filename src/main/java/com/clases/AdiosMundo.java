@@ -1,3 +1,5 @@
+package main.java.com.clases;
+
 /**
  * Esta clase dice Adios mundo.
  */
