@@ -31,15 +31,27 @@ jobs:
       - name: 🧰 Instalar Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
+      - name: 📥 Descargar PDF Doclet
+        run: |
+          wget https://repo1.maven.org/maven2/org/tquadrat/javadoc-pdf-doclet/1.5.0/javadoc-pdf-doclet-1.5.0.jar -O javadoc-pdf-doclet.jar
+
+
       - name: 🏗️ Generar archivos Markdown
         run: |
           mkdir -p docs/md
-          # Ejemplo genérico: convertir todos los JavaDoc HTML a Markdown
-          # (si ya tienes javadoc generado)
           for file in $(find docs/html -name "*.html"); do
             base=$(basename "$file" .html)
             pandoc "$file" -f html -t markdown -o "docs/md/$base.md"
           done
+
+      - name: 📘 Generar documentación PDF
+        run: |
+          mkdir -p docs/pdf
+          javadoc \
+            -docletpath javadoc-pdf-doclet.jar \
+            -doclet org.tquadrat.doclet.pdf.PDFDoclet \
+            -d docs/pdf \
+            src/*.java
 
       - name: 💾 Subir los cambios generados a main
         run: |
