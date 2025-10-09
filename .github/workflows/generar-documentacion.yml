@@ -28,6 +28,12 @@ jobs:
           mkdir -p docs/html
           javadoc -d docs/html src/*.java
 
+      - name: 💾 Subir los cambios generados a main
+        run: |
+          git add docs/html
+          git commit -m "🔄 Actualización automática de documentación Javadoc" || echo "Sin cambios que subir"
+          git push origin master
+
       - name: 🚀 Publicar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
