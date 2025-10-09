@@ -28,11 +28,21 @@ jobs:
           mkdir -p docs/html
           javadoc -d docs/html src/*.java
 
+      - name: 🏗️ Generar archivos Markdown
+        run: |
+          mkdir -p docs/md
+          # Ejemplo genérico: convertir todos los JavaDoc HTML a Markdown
+          # (si ya tienes javadoc generado)
+          for file in $(find docs/html -name "*.html"); do
+            base=$(basename "$file" .html)
+            pandoc "$file" -f html -t markdown -o "docs/md/$base.md"
+          done
+
       - name: 💾 Subir los cambios generados a main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/html
+          git add docs
           git commit -m "🔄 Actualización automática de documentación Javadoc" || echo "Sin cambios que subir"
           git push origin master
 
