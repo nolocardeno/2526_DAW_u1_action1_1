@@ -29,7 +29,7 @@ jobs:
       - name: 🏗️ Generar documentación con Javadoc
         run: |
           mkdir -p docs/html
-          javadoc -d docs/html -sourcepath src/main/java -subpackages main.java
+          javadoc -d docs/html -sourcepath src -subpackages main.java
 
       - name: 📄 Convertir HTML a PDF
         run: |
